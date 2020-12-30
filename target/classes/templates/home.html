@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>CoronaVirus Tracker</title>
+<link rel='shortcut icon' href='images/Corona.png'>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/topnav :: navbar"></div>
+	<hr class="my-4">
+	<hr class="my-4">
+	<marquee style="background-color: yellow"><strong class=text-danger>Note:</strong>
+		The data shown below is being referenced from github repository of
+		<strong>CSSEGIandData</strong> and it's update frequency is once a day around 23:59
+		(UTC)</marquee>
+	<div class="container-fluid">
+
+		<div class="jumbotron">
+
+			<h3 style="text-align: center">
+				<span class="badge badge-light"><svg width="1em" height="1em"
+						viewBox="0 0 17 17" class="bi bi-globe" fill="currentColor"
+						xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+							d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4H2.255a7.025 7.025 0 0 1 3.072-2.472 6.7 6.7 0 0 0-.597.933c-.247.464-.462.98-.64 1.539zm-.582 3.5h-2.49c.062-.89.291-1.733.656-2.5H3.82a13.652 13.652 0 0 0-.312 2.5zM4.847 5H7.5v2.5H4.51A12.5 12.5 0 0 1 4.846 5zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5H7.5V11H4.847a12.5 12.5 0 0 1-.338-2.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12H7.5v2.923c-.67-.204-1.335-.82-1.887-1.855A7.97 7.97 0 0 1 5.145 12zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11H1.674a6.958 6.958 0 0 1-.656-2.5h2.49c.03.877.138 1.718.312 2.5zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12h2.355a7.967 7.967 0 0 1-.468 1.068c-.552 1.035-1.218 1.65-1.887 1.855V12zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5h-2.49A13.65 13.65 0 0 0 12.18 5h2.146c.365.767.594 1.61.656 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4H8.5V1.077c.67.204 1.335.82 1.887 1.855.173.324.33.682.468 1.068z" />
+  </svg></span>&nbsp;<Span class="badge badge-dark font-weight-bold px-2 py-2">Global Data</Span>
+			</h3>
+			<h6 style="text-align: center" class="text-muted"># The data
+				shown below are the total cases till date #</h6>
+			<hr class="my-4">
+			<div class="card-deck justify-content-center">
+				<div class="card text-center text-white bg-danger mb-3"
+					style="max-width: 18rem; max-height: 12rem">
+					<div class="card-body">
+						<h1 class="card-title" th:text="${#numbers.formatDecimal(totalReportedCases, 0, 'COMMA', 0, 'POINT')}"></h1>
+					</div>
+					<div style="background-color: #ad1f2d" class="card-footer font-weight-bold text-uppercase">Confirmed</div>
+				</div>
+				<div class="card text-center text-white bg-success mb-3"
+					style="max-width: 18rem; max-height: 12rem">
+					<div class="card-body">
+						<h1 class="card-title" th:text="${#numbers.formatDecimal(recovercases, 0, 'COMMA', 0, 'POINT')}"></h1>
+					</div>
+					<div style="background-color: #1e7b34" class="card-footer font-weight-bold text-uppercase">Recovered</div>
+				</div>
+				<div class="card text-center text-white bg-info mb-3"
+					style="max-width: 18rem; max-height: 12rem">
+					<div class="card-body">
+						<h1 class="card-title" th:text="${#numbers.formatDecimal(ActiveCases, 0, 'COMMA', 0, 'POINT')}"></h1>
+					</div>
+					<div style="background-color: #148c9f" class="card-footer font-weight-bold text-uppercase">Active</div>
+				</div>
+				<div class="card text-center text-white bg-secondary mb-3"
+					style="max-width: 18rem; max-height: 12rem">
+					<div class="card-body">
+						<h1 class="card-title" th:text="${#numbers.formatDecimal(totalDeathCases, 0, 'COMMA', 0, 'POINT')}"></h1>
+					</div>
+					<div style="background-color: #535a5f" class="card-footer font-weight-bold text-uppercase">Deaths</div>
+				</div>
+			</div>
+
+
+			<hr class="my-4">
+
+
+			<h2 style="text-align: center">
+				<span class="badge badge-pill badge-danger">LIVE REPORTS</span>
+			</h2>
+			<h6 style="text-align: center" class="text-muted"># Cases that
+				have been reported today #</h6>
+			<br>
+			<div class="alert alert-success" role="alert">
+				<h4>
+					<span class="badge badge-success" th:text="${#numbers.formatDecimal(PrevRecoverCases, 0, 'COMMA', 0, 'POINT')}"></span>&nbsp;Recovered
+					cases have been reported today.
+				</h4>
+			</div>
+			<div class="alert alert-secondary" role="alert">
+				<h4>
+					<span class="badge badge-secondary" th:text="${#numbers.formatDecimal(PrevDeathCases, 0, 'COMMA', 0, 'POINT')}"></span>&nbsp;Deaths
+					have been reported today.
+				</h4>
+			</div>
+			<div class="alert alert-danger">
+				<h4>
+					<span class="badge badge-danger" th:text="${#numbers.formatDecimal(PrevReportedCases, 0, 'COMMA', 0, 'POINT')}"></span>&nbsp;New
+					cases have been reported today.
+				</h4>
+			</div>
+		</div>
+
+		<div class="container">
+			<table class="table table-bordered">
+				<thead class="thead-dark text-center">
+					<tr>
+						<th class="font-weight-bold text-uppercase">Country</th>
+						<th class="font-weight-bold text-uppercase">State</th>
+						<th class="font-weight-bold text-uppercase">Total cases (Overall)</th>
+						<th class="font-weight-bold text-uppercase">Total cases (Today)</th>
+					</tr>
+				</thead>
+				<tr th:each="locationStat : ${locationStats}">
+					<td class="table-active font-weight-bold text-uppercase text-center" th:text="${locationStat.country}"></td>
+					<td class="table-active text-center" th:text="${locationStat.state}">0</td>
+					<td class="text-center" th:text="${#numbers.formatDecimal(locationStat.latestTotalCases, 0, 'COMMA', 0, 'POINT')}">0</td>
+					<td class="text-center" th:text="${#numbers.formatDecimal(locationStat.diffFromPrevDay, 0, 'COMMA', 0, 'POINT')}">0</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+	
+	
+	<div style="margin: auto;">
+		<script data-name="BMC-Widget"
+			src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+			data-id="harshil2120"
+			data-description="Support me on Buy me a coffee!"
+			data-message="Thank you for visiting. You can now buy me a coffee!"
+			data-color="#5F7FFF" data-position="Right" data-x_margin="18"
+			data-y_margin="18"></script>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
